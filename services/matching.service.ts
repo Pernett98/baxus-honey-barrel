@@ -1,13 +1,14 @@
 import type { Asset, AssetDocument } from "~models/Asset"
 
 export type MatchResult = {
-  asset: AssetDocument
+  asset?: AssetDocument
   confidence: number
   matchDetails: {
     nameMatch: number
     commonWords: string[]
     numberMatch: boolean
   }
+  error?: string
 }
 
 // Helper function to normalize strings for comparison
@@ -124,5 +125,19 @@ export function findBestMatches(
         }
       }
     })
-    .sort((a, b) => b.confidence - a.confidence)
+    .filter((result) => result.confidence >= 0.3) // Filter out low confidence matches
+    .sort((a, b) => {
+      // For high confidence matches (0.7-1.0), prioritize price
+      if (a.confidence >= 0.7 && b.confidence >= 0.7) {
+        return a.asset._source.price - b.asset._source.price
+      }
+
+      // For medium confidence matches (0.3-0.7), prioritize confidence
+      if (a.confidence < 0.7 && b.confidence < 0.7) {
+        return b.confidence - a.confidence
+      }
+
+      // If one is high confidence and one is medium, prioritize the high confidence one
+      return b.confidence - a.confidence
+    })
 }

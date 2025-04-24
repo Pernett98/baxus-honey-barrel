@@ -32,6 +32,16 @@
       "activeTab",
       "tabs"
     ],
+    "web_accessible_resources": [
+      {
+        "resources": ["assets/fonts/*"],
+        "matches": ["<all_urls>"]
+      },
+      {
+        "resources": ["assets/images/*"],
+        "matches": ["<all_urls>"]
+      }
+    ],
     "externally_connectable": {
       "matches": [
         "*://*.localhost.com/*"

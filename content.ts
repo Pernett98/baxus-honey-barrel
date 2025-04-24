@@ -34,7 +34,7 @@ function detectCurrency(priceString: string): string {
 // Function to convert price to USD
 function convertToUSD(price: number, fromCurrency: string): number {
   const rate = CURRENCY_RATES[fromCurrency] || 1
-  return price
+  return price * rate
 }
 
 // Function to extract product information from the current page
@@ -150,6 +150,23 @@ function extractProductInfo() {
   const cleanPrice = productPrice.replace(/[^0-9.,]/g, "").replace(",", ".")
   const price = parseFloat(cleanPrice) || 0
   const currency = detectCurrency(productPrice)
+
+  // Check if we have valid product information
+  const missingFields: string[] = []
+  if (!productName) missingFields.push("name")
+  if (price === 0) missingFields.push("price")
+
+  if (missingFields.length > 0) {
+    return {
+      error: {
+        code: "PRODUCT_EXTRACTION_ERROR",
+        message: "Could not extract product information from this page",
+        details: `Missing fields: ${missingFields.join(", ")}`,
+        customImagePath: "/assets/images/404.png",
+        missingFields
+      }
+    }
+  }
 
   return {
     name: productName,
