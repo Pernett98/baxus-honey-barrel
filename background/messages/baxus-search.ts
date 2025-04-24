@@ -1,15 +1,20 @@
 import type { PlasmoMessaging } from "@plasmohq/messaging"
 
-import { baxusBottleSearch } from "~services/baxus.service"
+import { findMatchingBottles } from "~services/baxus.service"
 
 const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
-  const { query } = req.body
-  console.log(query)
-  const message = await baxusBottleSearch(query)
-
-  res.send({
-    message
-  })
+  console.log("from message")
+  try {
+    const { query } = req.body
+    const message = await findMatchingBottles(query)
+    console.log(message)
+    res.send({
+      message
+    })
+  } catch (error) {
+    console.log(error)
+    res.send({ error })
+  }
 }
 
 export default handler
