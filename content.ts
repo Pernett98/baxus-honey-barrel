@@ -154,7 +154,7 @@ function extractProductInfo() {
   // Check if we have valid product information
   const missingFields: string[] = []
   if (!productName) missingFields.push("name")
-  if (price === 0) missingFields.push("price")
+  // if (price === 0) missingFields.push("price")
 
   if (missingFields.length > 0) {
     return {

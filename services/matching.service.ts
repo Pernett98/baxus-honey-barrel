@@ -89,6 +89,7 @@ export function findBestMatches(
   sourceName: string,
   candidates: AssetDocument[]
 ): MatchResult[] {
+  console.log(candidates)
   return candidates
     .map((asset) => {
       // Calculate name similarity
@@ -125,7 +126,6 @@ export function findBestMatches(
         }
       }
     })
-    .filter((result) => result.confidence >= 0.3) // Filter out low confidence matches
     .sort((a, b) => {
       // For high confidence matches (0.7-1.0), prioritize price
       if (a.confidence >= 0.7 && b.confidence >= 0.7) {
@@ -140,4 +140,5 @@ export function findBestMatches(
       // If one is high confidence and one is medium, prioritize the high confidence one
       return b.confidence - a.confidence
     })
+  //.filter((result) => result.confidence >= 0.3) // Filter out low confidence matches
 }

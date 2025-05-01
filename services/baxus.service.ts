@@ -74,9 +74,8 @@ export const findMatchingBottles = async (
     }
 
     // Return matches with confidence > 0.3
-    return matches
-      .filter((match) => match.confidence > 0.3)
-      .sort((a, b) => b.confidence - a.confidence)
+    return matches.filter((match) => match.confidence > 0.3)
+    //.sort((a, b) => b.confidence - a.confidence)
   } catch (error) {
     // If it's already a structured error, return it
     if (error && typeof error === "object" && "code" in error) {

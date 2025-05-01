@@ -201,13 +201,14 @@ function IndexPopup() {
           shippingCost
         )
       : null
+
+  console.log(state)
   return (
     <div
       style={{
         padding: 16,
         minWidth: 300
       }}>
-      <h2>Baxus Honey Barrel</h2>
       {loading && <p>Loading...</p>}
       {error && (
         <div className="error-message">
@@ -236,20 +237,23 @@ function IndexPopup() {
           <p className="product-name">
             <strong>Name:</strong> {productInfo.name}
           </p>
-          <p className="price">
-            <strong>Price:</strong> {productInfo.price.toFixed(2)}{" "}
-            {productInfo.currency}
-            {productInfo.currency !== "USD" && (
-              <span style={{ marginLeft: 8, color: "#666" }}>
-                {/*productInfo.rawPrice*/}
-                (≈ $
-                {convertToUSD(productInfo.price, productInfo.currency).toFixed(
-                  2
-                )}{" "}
-                USD)
-              </span>
-            )}
-          </p>
+          {!!productInfo.price && (
+            <p className="price">
+              <strong>Price:</strong> {productInfo.price.toFixed(2)}{" "}
+              {productInfo.currency}
+              {productInfo.currency !== "USD" && (
+                <span style={{ marginLeft: 8, color: "#666" }}>
+                  {/*productInfo.rawPrice*/}
+                  (≈ $
+                  {convertToUSD(
+                    productInfo.price,
+                    productInfo.currency
+                  ).toFixed(2)}{" "}
+                  USD)
+                </span>
+              )}
+            </p>
+          )}
         </div>
       )}
       {/* {apiResponse && !error && (
@@ -299,6 +303,7 @@ function IndexPopup() {
           )}
         </div>
       )} */}
+
       {state &&
         state.message &&
         state.message.length > 0 &&
