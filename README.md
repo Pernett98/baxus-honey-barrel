@@ -1,4 +1,21 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+# Baxus Honey Barrel
+
+A browser extension that helps you find the best prices for whisky and wine bottles by comparing prices across different e-commerce websites with the BAXUS marketplace.
+
+## Features
+
+- **Automatic Price Comparison**: Automatically detects whisky and wine bottles on e-commerce websites and compares their prices with BAXUS marketplace listings
+- **Smart Matching**: Uses advanced algorithms to accurately match products across different websites
+- **Price Savings**: Shows potential savings when a better price is available on BAXUS
+- **Easy Navigation**: One-click access to BAXUS marketplace listings for the same product
+
+## How It Works
+
+1. When you visit a whisky or wine product page on any e-commerce website, the extension automatically:
+   - Detects the product name and price
+   - Searches for matching products on BAXUS
+   - Compares prices and shows potential savings
+2. If a better price is found on BAXUS, you can easily navigate to the listing with a single click
 
 ## Getting Started
 

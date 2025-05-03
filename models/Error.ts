@@ -72,12 +72,13 @@ export const createNoResultsError = (
 ): NoResultsError => {
   return {
     code: "NO_RESULTS_ERROR",
-    message: "No matching products found",
+    message: "No matching products found in the marketplace",
     details: query
       ? `No results found for: ${query}${confidence ? ` (confidence threshold: ${confidence})` : ""}`
       : "No matching products found in the marketplace",
     query,
-    confidence
+    confidence,
+    customImagePath: "/assets/images/404.png"
   }
 }
 
