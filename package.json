@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@plasmohq/messaging": "^0.7.1",
-    "plasmo": "0.90.3",
+    "plasmo": "0.90.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
@@ -34,12 +34,20 @@
     ],
     "web_accessible_resources": [
       {
-        "resources": ["assets/fonts/*"],
-        "matches": ["<all_urls>"]
+        "resources": [
+          "assets/fonts/*"
+        ],
+        "matches": [
+          "<all_urls>"
+        ]
       },
       {
-        "resources": ["assets/images/*"],
-        "matches": ["<all_urls>"]
+        "resources": [
+          "assets/images/*"
+        ],
+        "matches": [
+          "<all_urls>"
+        ]
       }
     ],
     "externally_connectable": {
